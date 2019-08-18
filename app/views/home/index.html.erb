@@ -1,5 +1,14 @@
-<% if session[:userinfo] %>
-  <h1><%= session[:userinfo]['info']['name'] %> is logged in</h1>
+<% if current_user %>
+  <% if current_admin_user != current_user %>
+    <h1><%= current_admin_user.email %> is logged in as <%= current_user.email %>.</h1>
+  <% else %>
+    <h1><%= current_user.email %> is logged in.</h1>
+  <% end %>
+
+  <ul>
+    <li><%= link_to 'Admin', admin_root_path %></li>
+    <li><%= link_to 'Log out', auth_logout_path, method: :post %></li>
+  </ul>
 <% else %>
-  <h1>None user is authenticated. <%= link_to 'Login', authentication_path %></h1>
+  <h1>None user is authenticated. <%= link_to 'Log in', authentication_path %></h1>
 <% end %>
