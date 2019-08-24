@@ -34,7 +34,7 @@ as well as a link to its edit page.
   <div style="margin: 0 10px;">
     <%= link_to(
       'Log in as user',
-      authenticate_as_user_admin_user_path(page.resource),
+      login_as_user_admin_user_path(page.resource),
       method: :post,
       class: "button",
     )%>

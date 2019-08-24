@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users do
-      post :authenticate_as_user, on: :member
+      post :login_as_user, on: :member
     end
 
     root to: 'users#index'
