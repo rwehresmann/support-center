@@ -17,7 +17,7 @@ class Auth0Controller < ApplicationController
   end
 
   def logout
-    if admin_logged_as_other_user?
+    if admin_logged_as_another_user?
       accessed_user = session[:user_id]
       session[:user_id] = session[:admin_user_id]
 
@@ -38,7 +38,7 @@ class Auth0Controller < ApplicationController
 
   def find_or_create_user
     info = request.env.fetch('omniauth.auth').fetch('info')
-    user_email = info.fetch(:name)
+    user_email = info.fetch('email')
     user = User.find_by(email: user_email)
 
     return user if user
@@ -46,7 +46,7 @@ class Auth0Controller < ApplicationController
     User.create!(email: user_email)
   end
 
-  def admin_logged_as_other_user?
+  def admin_logged_as_another_user?
     session.fetch(:user_id) != session.fetch(:admin_user_id)
   end
 end
