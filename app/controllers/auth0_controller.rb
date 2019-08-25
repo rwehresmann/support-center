@@ -1,4 +1,13 @@
 class Auth0Controller < ApplicationController
+  def authentication
+    redirect_to(
+      "https://#{ENV.fetch('AUTH0_DOMAIN')}/authorize?" +
+      "client_id=#{ENV.fetch('AUTH0_CLIENT_ID')}&" +
+      "response_type=code&" +
+      "redirect_uri=#{URI.encode(auth_callback_url)}"
+    )
+  end
+
   def callback
     user = find_or_create_user
 
@@ -47,6 +56,6 @@ class Auth0Controller < ApplicationController
   end
 
   def admin_logged_as_another_user?
-    session.fetch(:user_id) != session.fetch(:admin_user_id)
+    session[:user_id] != session[:admin_user_id]
   end
 end
