@@ -132,7 +132,7 @@ GEM
     omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -217,7 +217,7 @@ DEPENDENCIES
   dotenv-rails
   listen (>= 3.0.5, < 3.2)
   omniauth-auth0 (~> 2.2)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   sass-rails (~> 5.0)
   spring
